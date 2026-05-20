@@ -38,11 +38,24 @@
       </div>
     </div>
 
+    <div v-if="cvData.referanser && cvData.referanser.length > 0" class="space-y-4 pt-4">
+      <h2 class="text-slate-900 uppercase tracking-wider text-sm font-bold border-b pb-1 border-indigo-600">Referanser</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div v-for="ref in cvData.referanser" :key="ref.id" class="text-xs space-y-0.5">
+          <p class="font-bold text-slate-800 text-sm">{{ ref.navn || 'Navn på referanse' }}</p>
+          <p class="font-medium text-indigo-600">
+            {{ ref.tittel }} <span class="text-slate-400 font-normal" v-if="ref.bedrift">hos {{ ref.bedrift }}</span>
+          </p>
+          <p class="text-slate-500 italic mt-1" v-if="ref.kontakt">📞 {{ ref.kontakt }}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script setup>
-// Tar imot data fra app.vue for å tegne den ut på skjermen
 defineProps({
   cvData: { type: Object, required: true }
 })

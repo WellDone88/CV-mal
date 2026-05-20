@@ -78,7 +78,31 @@
         ➕ Legg til ny jobb
       </button>
 
-    </div> </div> </template>
+    </div> </div> 
+    
+    <div class="space-y-4 pt-4 border-t border-slate-100">
+  <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Referanser</h3>
+  
+  <div v-for="ref in lokalData.referanser" :key="ref.id" class="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-2">
+    <input v-model="ref.navn" type="text" placeholder="Navn på referanse" class="w-full border rounded p-1.5 text-xs bg-white" />
+    <div class="grid grid-cols-2 gap-2">
+      <input v-model="ref.tittel" type="text" placeholder="Stillingstittel" class="border rounded p-1.5 text-xs bg-white" />
+      <input v-model="ref.bedrift" type="text" placeholder="Bedrift" class="border rounded p-1.5 text-xs bg-white" />
+    </div>
+    <input v-model="ref.kontakt" type="text" placeholder="Tlf / E-post" class="w-full border rounded p-1.5 text-xs bg-white" />
+  </div>
+
+  <button 
+    type="button"
+    @click="leggTilReferanse"
+    class="w-full mt-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 px-4 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1"
+  >
+    ➕ Legg til referanse
+  </button>
+</div>
+    
+    </template>
+    
 
 <script setup>
 
@@ -86,6 +110,16 @@
 const leggTilJobb = () => {
   // Vi genererer en unik ID basert på nåværende tidspunkt
   const nyId = Date.now()
+
+const leggTilReferanse = () => {
+  lokalData.value.referanser.push({
+    id: Date.now(),
+    navn: '',
+    tittel: '',
+    bedrift: '',
+    kontakt: ''
+  })
+}
   
   lokalData.value.erfaringer.push({
     id: nyId,
