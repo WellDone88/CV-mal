@@ -81,6 +81,27 @@
     </div> </div> 
     
     <div class="space-y-4 pt-4 border-t border-slate-100">
+  <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Utdanning</h3>
+  
+  <div v-for="skole in lokalData.utdanninger" :key="skole.id" class="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-2">
+    <div class="grid grid-cols-2 gap-2">
+      <input v-model="skole.grad" type="text" placeholder="Grad / Studieretning" class="border rounded p-1.5 text-xs bg-white" />
+      <input v-model="skole.skole" type="text" placeholder="Skole / Universitet" class="border rounded p-1.5 text-xs bg-white" />
+    </div>
+    <input v-model="skole.periode" type="text" placeholder="Periode (f.eks. 2019 - 2022)" class="w-full border rounded p-1.5 text-xs bg-white" />
+    <textarea v-model="skole.beskrivelse" rows="2" placeholder="Kort om fag eller spesialisering..." class="w-full border rounded p-1.5 text-xs bg-white resize-none"></textarea>
+  </div>
+
+  <button 
+    type="button"
+    @click="leggTilUtdanning"
+    class="w-full mt-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 px-4 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1"
+  >
+    ➕ Legg til utdanning
+  </button>
+</div>
+
+    <div class="space-y-4 pt-4 border-t border-slate-100">
   <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Referanser</h3>
   
   <div v-for="ref in lokalData.referanser" :key="ref.id" class="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-2">
@@ -110,6 +131,16 @@
 const leggTilJobb = () => {
   // Vi genererer en unik ID basert på nåværende tidspunkt
   const nyId = Date.now()
+
+const leggTilUtdanning = () => {
+  lokalData.value.utdanninger.push({
+    id: Date.now(),
+    grad: '',
+    skole: '',
+    periode: '',
+    beskrivelse: ''
+  })
+}
 
 const leggTilReferanse = () => {
   lokalData.value.referanser.push({

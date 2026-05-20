@@ -38,6 +38,21 @@
       </div>
     </div>
 
+    <div v-if="cvData.utdanninger && cvData.utdanninger.length > 0" class="space-y-4">
+  <h2 class="text-slate-900 uppercase tracking-wider text-sm font-bold border-b pb-1">Utdanning</h2>
+  
+  <div class="space-y-6">
+    <div v-for="skole in cvData.utdanninger" :key="skole.id" class="space-y-1">
+      <div class="flex justify-between items-baseline">
+        <h3 class="text-sm font-bold text-slate-800">{{ skole.grad }}</h3>
+        <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2 py-0.5 rounded">{{ skole.periode }}</span>
+      </div>
+      <p class="text-xs font-medium text-indigo-600">{{ skole.skole }}</p>
+      <p v-if="skole.beskrivelse" class="text-xs text-slate-600 leading-relaxed mt-1">{{ skole.beskrivelse }}</p>
+    </div>
+  </div>
+</div>
+
     <div v-if="cvData.referanser && cvData.referanser.length > 0" class="space-y-4 pt-4">
       <h2 class="text-slate-900 uppercase tracking-wider text-sm font-bold border-b pb-1 border-indigo-600">Referanser</h2>
       

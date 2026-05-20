@@ -38,6 +38,10 @@ const cvData = ref({
     { id: 1, stilling: 'Senior Nuxt-Utvikler', bedrift: 'TechInnovate AS', periode: '2024 - Nå', beskrivelse: 'Hovedansvarlig for arkitektur og utvikling av komplekse webapplikasjoner i Nuxt 3. Sørget for 40% raskere innlastingstid ved optimalisering av SSR (Server-Side Rendering).' },
     { id: 2, stilling: 'Frontend Utvikler', bedrift: 'Digitalbyrået Pixel', periode: '2022 - 2024', beskrivelse: 'Utviklet skreddersydde nettløsninger og e-handelsplattformer for spennende kunder. Jobbet tett med designere for å implementere pikselperfekt Tailwind CSS.' }
   ],
+  // Legg til dette inni cvData i app.vue:
+utdanninger: [
+  { id: 1, grad: 'Bachelor i IT og Webforhandling', skole: 'Høyskolen Kristiania', periode: '2019 - 2022', beskrivelse: 'Spesialisering i frontend-utvikling og skyarkitektur.' }
+],
   referanser: [
   { id: 1, navn: 'Kari Nordmann', tittel: 'Daglig leder', bedrift: 'TechInnovate AS', kontakt: 'kari@tech.no / 900 00 000' }
 ]
