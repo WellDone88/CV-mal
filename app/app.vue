@@ -27,6 +27,7 @@
 // Vår reaktive eksempeldata - CV-en starter ALDRI blank!
 // Merk: Vi trenger ikke 'import { ref } from "vue"' fordi Nuxt fikser det automatisk!
 const cvData = ref({
+  Bilde:'',
   navn: 'Ola Nordmann',
   tittel: 'Fullstack Utvikler & UI-entusiast',
   epost: 'ola@nordmann.no',

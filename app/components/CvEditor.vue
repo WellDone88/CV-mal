@@ -4,6 +4,31 @@
       ✍️ Rediger din informasjon
     </h2>
 
+    <div class="space-y-2">
+  <label class="block text-sm font-semibold text-indigo-600 uppercase tracking-wider">Profilbilde</label>
+  
+  <div 
+    @dragover.prevent 
+    @drop.prevent="haandterDrop"
+    class="border-2 border-dashed border-slate-300 hover:border-indigo-500 rounded-xl p-4 text-center cursor-pointer bg-slate-50 transition-colors group"
+    @click="$refs.filInput.click()"
+  >
+    <input 
+      type="file" 
+      ref="filInput" 
+      class="hidden" 
+      accept="image/*" 
+      @change="haandterFilvalg" 
+    />
+    
+    <div class="space-y-1 text-slate-500">
+      <span class="text-2xl group-hover:scale-110 inline-block transition-transform">📸</span>
+      <p class="text-xs font-medium text-slate-700">Klikk for å velge, eller dra et bilde hit</p>
+      <p class="text-[10px]">PNG, JPG eller WEBP (Maks 2MB)</p>
+    </div>
+  </div>
+</div>
+
     <div class="space-y-4">
       <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Personalia</h3>
       
@@ -44,11 +69,53 @@
         <input v-model="jobb.periode" type="text" placeholder="Periode (f.eks. 2022 - 2024)" class="w-full border rounded p-1.5 text-xs bg-white" />
         <textarea v-model="jobb.beskrivelse" rows="2" placeholder="Beskriv oppgaver..." class="w-full border rounded p-1.5 text-xs bg-white resize-none"></textarea>
       </div>
-    </div>
-  </div>
-</template>
+
+      <button 
+        type="button"
+        @click="leggTilJobb"
+        class="w-full mt-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 px-4 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1"
+      >
+        ➕ Legg til ny jobb
+      </button>
+
+    </div> </div> </template>
 
 <script setup>
+
+// Funksjon for å legge til en ny, tom jobb i listen
+const leggTilJobb = () => {
+  // Vi genererer en unik ID basert på nåværende tidspunkt
+  const nyId = Date.now()
+  
+  lokalData.value.erfaringer.push({
+    id: nyId,
+    stilling: '',
+    bedrift: '',
+    periode: '',
+    beskrivelse: ''
+  })
+}
+
+const haandterFilvalg = (event) => {
+  const fil = event.target.files[0]
+  lesOgLagreFil(fil)
+}
+
+const haandterDrop = (event) => {
+  const fil = event.dataTransfer.files[0]
+  lesOgLagreFil(fil)
+}
+
+const lesOgLagreFil = (fil) => {
+  if (!fil || !fil.type.startsWith('image/')) return
+
+  const leser = new FileReader()
+  leser.onload = (e) => {
+    // Vi oppdaterer lokalData, som watch-en vår automatisk sender opp til app.vue!
+    lokalData.value.bilde = e.target.result
+  }
+  leser.readAsDataURL(fil)
+}
 
 // Tar imot data fra app.vue
 const props = defineProps({
