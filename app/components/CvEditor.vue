@@ -49,7 +49,6 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
 
 // Tar imot data fra app.vue
 const props = defineProps({
