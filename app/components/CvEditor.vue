@@ -29,32 +29,29 @@
 
     <div class="space-y-4">
       <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Personalia</h3>
-      
       <div>
         <label class="block text-xs font-medium text-slate-500 mb-1">Fullt navn</label>
-        <input v-model="lokalData.navn" type="text" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
+        <input v-model="lokalData.navn" type="text" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
       </div>
-
       <div>
         <label class="block text-xs font-medium text-slate-500 mb-1">Yrkesstittel</label>
-        <input v-model="lokalData.tittel" type="text" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
+        <input v-model="lokalData.tittel" type="text" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
       </div>
-
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="block text-xs font-medium text-slate-500 mb-1">E-post</label>
-          <input v-model="lokalData.epost" type="email" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
+          <input v-model="lokalData.epost" type="email" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
         </div>
         <div>
           <label class="block text-xs font-medium text-slate-500 mb-1">Telefon</label>
-          <input v-model="lokalData.mobil" type="text" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
+          <input v-model="lokalData.mobil" type="text" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
         </div>
       </div>
     </div>
 
     <div class="space-y-2">
       <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Om meg / Profil</h3>
-      <textarea v-model="lokalData.profil" rows="4" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-y"></textarea>
+      <textarea v-model="lokalData.profil" rows="4" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none resize-y"></textarea>
     </div>
 
     <div class="space-y-4">
@@ -68,15 +65,11 @@
         <textarea v-model="jobb.beskrivelse" rows="2" placeholder="Beskriv oppgaver..." class="w-full border rounded p-1.5 text-xs bg-white resize-none"></textarea>
       </div>
 
-      <button 
-        type="button"
-        @click="leggTilJobb"
-        class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 px-4 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1"
-      >
+      <button @click="leggTilJobb" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1">
         ➕ Legg til ny jobb
       </button>
-    </div> 
-    
+    </div>
+
     <div class="space-y-4 pt-4 border-t border-slate-100">
       <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Utdanning</h3>
       <div v-for="skole in lokalData.utdanninger" :key="skole.id" class="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-2 mb-2">
@@ -88,11 +81,7 @@
         <textarea v-model="skole.beskrivelse" rows="2" placeholder="Kort om fag eller spesialisering..." class="w-full border rounded p-1.5 text-xs bg-white resize-none"></textarea>
       </div>
 
-      <button 
-        type="button"
-        @click="leggTilUtdanning"
-        class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 px-4 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1"
-      >
+      <button @click="leggTilUtdanning" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1">
         ➕ Legg til utdanning
       </button>
     </div>
@@ -108,11 +97,7 @@
         <input v-model="ref.kontakt" type="text" placeholder="Tlf / E-post" class="w-full border rounded p-1.5 text-xs bg-white" />
       </div>
 
-      <button 
-        type="button"
-        @click="leggTilReferanse"
-        class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 px-4 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1"
-      >
+      <button @click="leggTilReferanse" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-2 rounded-lg text-xs transition-colors border border-slate-300 border-dashed flex items-center justify-center gap-1">
         ➕ Legg til referanse
       </button>
     </div>
@@ -120,73 +105,32 @@
 </template>
 
 <script setup>
-// Tar imot data fra app.vue
 const props = defineProps({
   cvData: { type: Object, required: true }
 })
-
-// Definerer eventet for å sende data tilbake
 const emit = defineEmits(['update:cvData'])
-
-// Lager en lokal kopi av dataen
 const lokalData = ref(JSON.parse(JSON.stringify(props.cvData)))
 
-// Hver gang brukeren taster noe, send det opp til app.vue
-watch(lokalData, (nyVerdi) => {
-  emit('update:cvData', nyVerdi)
+watch(lokalData, (ny) => {
+  emit('update:cvData', ny)
 }, { deep: true })
 
-// --- FUNKSJONER FOR Å LEGGE TIL NYE ELEMENTER ---
-
 const leggTilJobb = () => {
-  lokalData.value.erfaringer.push({
-    id: Date.now(),
-    stilling: '',
-    bedrift: '',
-    periode: '',
-    beskrivelse: ''
-  })
+  lokalData.value.erfaringer.push({ id: Date.now(), stilling: '', bedrift: '', periode: '', beskrivelse: '' })
 }
-
 const leggTilUtdanning = () => {
-  lokalData.value.utdanninger.push({
-    id: Date.now(),
-    grad: '',
-    skole: '',
-    periode: '',
-    beskrivelse: ''
-  })
+  lokalData.value.utdanninger.push({ id: Date.now(), grad: '', skole: '', periode: '', beskrivelse: '' })
 }
-
 const leggTilReferanse = () => {
-  lokalData.value.referanser.push({
-    id: Date.now(),
-    navn: '',
-    tittel: '',
-    bedrift: '',
-    kontakt: ''
-  })
+  lokalData.value.referanser.push({ id: Date.now(), navn: '', tittel: '', bedrift: '', kontakt: '' })
 }
 
-// --- FILHÅNDTERING (PROFILBILDE) ---
-
-const haandterFilvalg = (event) => {
-  const fil = event.target.files[0]
-  lesOgLagreFil(fil)
-}
-
-const haandterDrop = (event) => {
-  const fil = event.dataTransfer.files[0]
-  lesOgLagreFil(fil)
-}
-
-const lesOgLagreFil = (fil) => {
-  if (!fil || !fil.type.startsWith('image/')) return
-
-  const leser = new FileReader()
-  leser.onload = (e) => {
-    lokalData.value.bilde = e.target.result
-  }
-  leser.readAsDataURL(fil)
+const haandterFilvalg = (e) => lesOgLagre(e.target.files[0])
+const haandterDrop = (e) => lesOgLagre(e.dataTransfer.files[0])
+const lesOgLagre = (f) => {
+  if (!f || !f.type.startsWith('image/')) return
+  const r = new FileReader()
+  r.onload = (e) => lokalData.value.bilde = e.target.result
+  r.readAsDataURL(f)
 }
 </script>
